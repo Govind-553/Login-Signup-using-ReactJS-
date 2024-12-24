@@ -53,15 +53,19 @@
     color: #797979;
     font-size: 19px;
 }
-.forgot-password {
+.unregistered-user {
     padding-left: 62px;
     margin-top: 27px;
     color: #797979;
     font-size: 18px;
 }
-.forgot-password span {
+.unregistered-user span {
     color: #4c00b4;
     cursor: pointer;
+}
+.unregistered-user span:hover {
+    color: #068fea;
+    text-decoration: underline;
 }
 .submit-container {
     display: flex;
