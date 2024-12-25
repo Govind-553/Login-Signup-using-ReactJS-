@@ -30,5 +30,4 @@ built with React.js, designed to provide a seamless user experience across all s
 
 ### 📸 Preview
 👉 Click below to visit the live demo!<br>
-**Link:** (https://login-signup-k4i43g88s-govind-choudharis-projects.vercel.app/)
-
+**Link:** (https://login-signup-five-tau.vercel.app/)
