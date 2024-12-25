@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import './LoginSignup.css';
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
@@ -9,6 +10,7 @@ const LoginSignup = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSignup = async () => {
         if (!email || !password || (action === "Sign Up" && !name)) {
@@ -35,6 +37,34 @@ const LoginSignup = () => {
         } catch (error) {
             console.error("Error during signup:", error);
             alert("Failed to register");
+        }
+    };
+
+    const handleLogin = async () => {
+        if (!email || !password) {
+            alert("Please fill all fields");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:3001/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("Login successful");
+                navigate("/home");
+            } else {
+                alert(data.error);
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("Failed to login");
         }
     };
 
@@ -92,7 +122,10 @@ const LoginSignup = () => {
                 </div>
                 <div
                     className={action === "Sign Up" ? "submit gray" : "submit"}
-                    onClick={() => setAction("Login")}
+                     onClick={() => {
+                        if (action === "Login") handleLogin();
+                        else setAction("Login");
+                    }}
                 >
                     Login
                 </div>
